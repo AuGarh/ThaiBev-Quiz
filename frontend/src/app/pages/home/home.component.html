@@ -24,25 +24,24 @@
         [rowsPerPageOptions]="[5, 10, 20]">
         <ng-template #header>
             <tr>
-                <th>ID</th>
-                <th>รหัสสินค้า</th>
-                <th class="text-center" style="width: 125px;">View</th>
-                <th class="text-center" style="width: 125px;">Delete</th>
+                <th class="text-center">ID</th>
+                <th class="text-center">รหัสสินค้า (36 หลัก)</th>
+                <th class="text-center" style="width: 120px;">View</th>
+                <th class="text-center" style="width: 120px;">Delete</th>
             </tr>
         </ng-template>
         <ng-template #body let-product>
             <tr>
-                <td>{{ product.id }}</td>
+                <td class="text-center">{{ product.id }}</td>
                 <td>{{ product.productCode }}</td>
-                <td class="text-center" style="width: 125px;">
-
-                    <button class="btn btn-success" (click)="showQRModal(product.productCode)">
+                <td class="text-center" style="width: 120px;">
+                    <button class="btn btn-success" (click)="showQRModal(product)">
                         <i class="pi pi-qrcode"></i>
                         QR
                     </button>
                 </td>
-                <td class="text-center" style="width: 125px;">
-                    <button class="btn btn-danger" (click)="deleteProduct(product.id)">
+                <td class="text-center" style="width: 120px;">
+                    <button class="btn btn-danger" (click)="deleteProduct(product)">
                         <i class="pi pi-trash"></i>
                         ลบ
                     </button>

@@ -71,10 +71,10 @@ export class HomeComponent implements OnInit {
         );
     }
 
-    deleteProduct(id: number) {
-        this.sharedService.showAlert('warning', `ต้องการลบข้อมูล รหัสสินค้า ${id} หรือไม่?`, () => {
+    deleteProduct(product: Product) {
+        this.sharedService.showAlert('warning', `ต้องการลบข้อมูล รหัสสินค้า <br> ${product.productCode} <br> หรือไม่?`, () => {
             this.sharedService.showLoading();
-            this.productService.deleteProduct(id).subscribe(
+            this.productService.deleteProduct(product.id).subscribe(
           () => {
               this.getProducts();
           }
@@ -82,13 +82,13 @@ export class HomeComponent implements OnInit {
         });
     }
 
-    showQRModal(productCode: string) {
-        this.QRProductCode = productCode;
+    showQRModal(product: Product) {
+        this.QRProductCode = product.productCode;
         this.visibleQRModal = true;
     }
 
     closeQRModal() {
         this.QRProductCode = '';
-        this.visibleQRModal = false
+        this.visibleQRModal = false;
     }
 }
