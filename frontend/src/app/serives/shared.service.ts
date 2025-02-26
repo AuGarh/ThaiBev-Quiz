@@ -28,7 +28,7 @@ export class SharedService {
         const title = type.charAt(0).toUpperCase() + type.slice(1) + '!';
         const swalOptions: any = {
             title: title,
-            text: message,
+            html: message,
             icon: type,
             confirmButtonColor: "#198754",
         };
