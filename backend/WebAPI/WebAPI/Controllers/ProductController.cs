@@ -20,7 +20,7 @@ namespace WebAPI.Controllers
         [HttpGet]
         public IActionResult GetProductList()
         {
-            var products = dbContext.Products.ToList();
+            var products = dbContext.Products.OrderBy(p => p.Id).ToList();
             return Ok(products);
         }
 
