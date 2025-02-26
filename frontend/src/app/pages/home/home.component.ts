@@ -54,19 +54,20 @@ export class HomeComponent implements OnInit {
     }
 
     addProduct() {
+        this.productCode = this.productCode.trim().toUpperCase();
         const isDuplicate = this.products?.some(product => product.productCode === this.productCode);
         if (isDuplicate) {
-            this.sharedService.showAlert('error', 'Product code already exists');
+            this.sharedService.showAlert('error', 'รหัสสินค้านี้มีอยู่แล้ว');
             return;
         }
         this.productService.createProduct(this.productCode).subscribe(
             () => {
                 this.sharedService.hideLoading();
-                this.sharedService.showAlert('success', 'Product created successfully',
-                    () => {
-                        this.getProducts();
-                        this.productCode = '';
-                    });
+                this.sharedService.showAlert('success', 'สร้างสินค้าสำเร็จ',
+                  () => {
+                    this.getProducts();
+                    this.productCode = '';
+                  });
             }
         );
     }
@@ -75,9 +76,9 @@ export class HomeComponent implements OnInit {
         this.sharedService.showAlert('warning', `ต้องการลบข้อมูล รหัสสินค้า <br> ${product.productCode} <br> หรือไม่?`, () => {
             this.sharedService.showLoading();
             this.productService.deleteProduct(product.id).subscribe(
-          () => {
-              this.getProducts();
-          }
+                () => {
+                    this.getProducts();
+                }
             );
         });
     }
