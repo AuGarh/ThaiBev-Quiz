@@ -1,0 +1,72 @@
+<div class="container products-header">
+    <div class="col-12">
+        <div class="row align-items-center">
+            <div class="col-auto">
+                <label for="product-code">รหัสสินค้า</label>
+            </div>
+            <div class="col">
+                <p-inputmask styleClass="form-control" placeholder="xxxxx-xxxxx-xxxxx-xxxxx-xxxxx-xxxxx"
+                    mask="*****-*****-*****-*****-*****-*****" [(ngModel)]="productCode" />
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-primary" type="button" [disabled]="!productCode" (click)="addProduct()">
+                    <i class="pi pi-plus"></i>
+                    ADD
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="container products-container mt-1">
+
+    <p-table [value]="products || []" [paginator]="true" [rows]="10" [tableStyle]="{ 'min-width': '50rem' }"
+        [rowsPerPageOptions]="[5, 10, 20]">
+        <ng-template #header>
+            <tr>
+                <th>ID</th>
+                <th>รหัสสินค้า</th>
+                <th class="text-center" style="width: 125px;">View</th>
+                <th class="text-center" style="width: 125px;">Delete</th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-product>
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.productCode }}</td>
+                <td class="text-center" style="width: 125px;">
+
+                    <button class="btn btn-success" (click)="showQRModal(product.productCode)">
+                        <i class="pi pi-qrcode"></i>
+                        QR
+                    </button>
+                </td>
+                <td class="text-center" style="width: 125px;">
+                    <button class="btn btn-danger" (click)="deleteProduct(product.id)">
+                        <i class="pi pi-trash"></i>
+                        ลบ
+                    </button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+</section>
+
+<p-dialog [modal]="true" [(visible)]="visibleQRModal">
+    <ng-template #headless>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center">
+                <qrcode [qrdata]="QRProductCode" [width]="300" [allowEmptyString]="true">
+                </qrcode>
+            </div>
+            <div class="col-12 d-flex justify-content-end">
+                <button class="btn btn-danger" (click)="visibleQRModal = false">
+                    <i class="pi pi-times"></i>
+                    ปิด
+                </button>
+
+            </div>
+        </div>
+    </ng-template>
+</p-dialog>
