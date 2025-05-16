@@ -4,9 +4,9 @@ import { RouterModule } from '@angular/router';
 import { TableModule } from 'primeng/table';
 import { InputMaskModule } from 'primeng/inputmask';
 import { Product } from '../../models/product.model';
-import { ProductService } from '../../serives/product.service';
+import { ProductService } from '../../services/product.service';
 import { FormsModule } from '@angular/forms';
-import { SharedService } from '../../serives/shared.service';
+import { SharedService } from '../../services/shared.service';
 import { QRCodeComponent } from "angularx-qrcode"
 import { DialogModule } from 'primeng/dialog';
 

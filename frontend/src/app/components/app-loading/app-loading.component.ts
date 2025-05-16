@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { Observable } from 'rxjs';
-import { SharedService } from '../../serives/shared.service';
+import { SharedService } from '../../services/shared.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
