@@ -10,6 +10,7 @@ export class SharedService {
     constructor() { }
 
     private loading = new BehaviorSubject<boolean>(false);
+    private requestCount = 0;
 
 
     get isLoading() {
@@ -17,11 +18,15 @@ export class SharedService {
     }
 
     public showLoading(): void {
+        this.requestCount++;
         this.loading.next(true);
     }
 
     public hideLoading(): void {
-        this.loading.next(false);
+        this.requestCount--;
+        if (this.requestCount === 0) {
+            this.loading.next(false);
+        }
     }
 
     public showAlert(type: 'success' | 'error' | 'warning' | 'info', message: string, callback?: () => void): void {
